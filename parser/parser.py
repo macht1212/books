@@ -3,8 +3,8 @@ import time
 import requests
 from tqdm import tqdm
 
-from models import AuthorModel, CategoryModel, BookModel, PublisherModel
-from models_orm import Insert
+from parser.models import AuthorModel, CategoryModel, BookModel, PublisherModel
+from bot.app.database import Insert
 
 
 class Parser:

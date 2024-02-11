@@ -7,7 +7,7 @@ from dotenv import load_dotenv
 
 from models_orm import Authors, Category, Books, Publisher
 
-load_dotenv('../.env')
+load_dotenv('../../../.env')
 
 
 def getenv(param: str) -> str:

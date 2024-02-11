@@ -1,6 +1,6 @@
 from sqlalchemy.orm import Mapped, mapped_column
 
-from models_orm.base import Base
+from bot.app.database.models_orm.base import Base
 
 
 class Publisher(Base):

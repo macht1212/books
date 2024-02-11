@@ -2,6 +2,5 @@ pydantic~=2.6.1
 requests~=2.31.0
 python-dotenv~=1.0.1
 SQLAlchemy~=2.0.25
-
-
 tqdm~=4.66.2
+
