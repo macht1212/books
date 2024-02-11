@@ -1,5 +1,3 @@
-import os
-
 from parser.parser import Parser
 from config import url, headers, cookies
 
