@@ -10,4 +10,4 @@ class Publisher(Base):
     title: Mapped[str] = mapped_column(nullable=False)
 
     def __repr__(self):
-        return self.title
+        return f'{self.title}'
