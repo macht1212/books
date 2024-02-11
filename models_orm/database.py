@@ -1,6 +1,6 @@
 import os
 
-from sqlalchemy import create_engine, MetaData
+from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
 from dotenv import load_dotenv
@@ -9,53 +9,67 @@ from models_orm import Authors, Category, Books, Publisher
 
 load_dotenv('../.env')
 
-metadata = MetaData()
-
 
 def getenv(param: str) -> str:
     return str(os.getenv(param))
 
 
-engine = create_engine(
-    url=f'postgresql+psycopg://{getenv("USER")}:{getenv("PASSWORD")}@localhost:5432/Books_',
-    echo=True,
-    pool_size=5,
-    max_overflow=10
-)
-
-Session = sessionmaker(bind=engine)
-
-
-class Actions:
-
-    # @staticmethod
-    @staticmethod
-    def _session(data):
-        with Session() as session:
-            session.add(data)
-            session.commit()
+def create_engine_(user: str, password: str, echo: object = False, pool_size: object = 5,
+                   max_overflow: object = 10) -> object:
+    return create_engine(
+        url=f'postgresql+psycopg://{user}:{password}@localhost:5432/Books_',
+        echo=echo,
+        pool_size=pool_size,
+        max_overflow=max_overflow
+    )
 
 
-class Insert(Actions):
+engine = create_engine(url=f'postgresql+psycopg://{getenv("USER")}:{getenv("PASSWORD")}@localhost:5432/Books_',
+                       echo=True,
+                       pool_size=5,
+                       max_overflow=10
+                       )
 
-    def __init__(self, **kw):
-        super().__init__(**kw)
+Session = sessionmaker(engine)
+
+
+class Insert:
+
+    def __init__(self):
+        self.session = Session
 
     def insert_author(self, **kwargs):
-        author = Authors(**kwargs)
-        self._session(author)
+        with self.session() as info:
+            if info.get(Authors, kwargs['id']):
+                pass
+            else:
+                author = Authors(**kwargs)
+                info.add(author)
+                info.commit()
 
     def insert_category(self, **kwargs):
-        category = Category(**kwargs)
-        self._session(category)
+        with self.session() as info:
+            if info.get(Category, kwargs['id']):
+                pass
+            else:
+                category = Category(**kwargs)
+                info.add(category)
+                info.commit()
 
     def insert_publisher(self, **kwargs):
-        publisher = Publisher(**kwargs)
-        self._session(publisher)
+        with self.session() as info:
+            if info.get(Publisher, kwargs['id']):
+                pass
+            else:
+                publisher = Publisher(**kwargs)
+                info.add(publisher)
+                info.commit()
 
     def insert_book(self, **kwargs):
-        book = Books(**kwargs)
-        self._session(book)
-
-
-
+        with self.session() as info:
+            if info.get(Books, kwargs['id']):
+                pass
+            else:
+                book = Books(**kwargs)
+                info.add(book)
+                info.commit()
