@@ -5,7 +5,7 @@ from sqlalchemy.orm import sessionmaker
 
 from dotenv import load_dotenv
 
-from models_orm import Authors, Category, Books, Publisher
+from bot.app.database.models_orm import Authors, Category, Books, Publisher
 
 load_dotenv('../../../.env')
 

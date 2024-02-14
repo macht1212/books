@@ -1,3 +1,4 @@
+from sqlalchemy import ForeignKey
 from sqlalchemy.orm import mapped_column, Mapped
 
 from bot.app.database.models_orm.base import Base
@@ -27,6 +28,7 @@ class Category(Base):
 
     id: Mapped[int] = mapped_column(primary_key=True)
     title: Mapped[str] = mapped_column(nullable=False)
+    cat_id: Mapped[int] = mapped_column(ForeignKey('category_id.id', ondelete='CASCADE'))
 
     def __repr__(self):
         return self.title

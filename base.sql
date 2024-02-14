@@ -31,9 +31,10 @@ INSERT INTO authors(id, firstname, lastname) VALUES (0, 'ND', 'ND');
 INSERT INTO category(id, title) VALUES (0, 'ND');
 INSERT INTO publisher(id, title) VALUES (0, 'ND');
 
---added category_id table and column into category table
+--added category_id table and column into category and books tables
 CREATE TABLE IF NOT EXISTS category_id (
 	id INTEGER NOT NULL PRIMARY KEY,
 	title VARCHAR);
 
 ALTER TABLE category ADD COLUMN cat_id INTEGER REFERENCES category_id (id);
+ALTER TABLE books ADD COLUMN description_nlp VARCHAR;

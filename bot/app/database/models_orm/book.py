@@ -37,6 +37,7 @@ class Books(Base):
     publisher: Mapped[int] = mapped_column(ForeignKey('publisher.id', ondelete='CASCADE'), default=0)
     title: Mapped[str] = mapped_column(nullable=False)
     description: Mapped[str] = mapped_column(default='No text')
+    description_nlp: Mapped[str] = mapped_column(default='No text')
     rating: Mapped[float] = mapped_column(default=0.0)
     votes: Mapped[int] = mapped_column(default=0)
 

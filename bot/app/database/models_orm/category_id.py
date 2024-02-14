@@ -5,7 +5,7 @@ from bot.app.database.models_orm.base import Base
 
 class CategoryID(Base):
 
-    __tablename__ = 'categoryid'
+    __tablename__ = 'category_id'
 
     id: Mapped[int] = mapped_column(primary_key=True)
     title: Mapped[str]

@@ -32,7 +32,8 @@ class CategoryModel(BaseModel):
         The CategoryModel class is a Pydantic model that represents a category with an id and a title field.
 
     Main functionalities
-        The main functionality of the CategoryModel class is to provide a structured representation of a category with two fields: id and title. It ensures that the values assigned to these fields are of the correct type.
+        The main functionality of the CategoryModel class is to provide a structured representation of a category with
+        two fields: id and title. It ensures that the values assigned to these fields are of the correct type.
 
     Methods
         The CategoryModel class does not define any additional methods.
