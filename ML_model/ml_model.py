@@ -1,7 +1,3 @@
-import datetime
-import os
-import pprint
-
 import numpy as np
 import pandas as pd
 from sklearn.feature_extraction.text import TfidfVectorizer
@@ -10,8 +6,6 @@ import warnings
 
 from sqlalchemy import select
 from sqlalchemy.orm import aliased
-
-import nltk
 
 from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
@@ -25,13 +19,6 @@ warnings.filterwarnings('ignore')
 lemm = WordNetLemmatizer()
 stemmer = SnowballStemmer("russian")
 
-start = datetime.datetime.now()
-print(start)
-
-
-nltk.download('omw-1.4')
-nltk.download('wordnet')
-nltk.download('stopwords')
 
 stop_words = stopwords.words('english') + stopwords.words('russian')
 
@@ -102,11 +89,3 @@ def nearest_neighbors(data: pd.DataFrame, string: str) -> dict:
     result = data.iloc[res[1][0]].sort_values(['coef', 'rating', 'votes'], ascending=[False, False, True])
     result.drop_duplicates('title', inplace=True)
     return result[['title', 'description', 'rating']].head(10).to_dict()
-
-
-df = get_data(session=Session, cat='Роман')
-df = create_data_frame(df)
-df = create_coefs(df)
-
-pprint.pprint(nearest_neighbors(df, 'Любовный роман про войну'))
-print(datetime.datetime.now() - start)
