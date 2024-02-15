@@ -1,9 +1,9 @@
 --clear all tables
-
 DROP TABLE books;
 DROP TABLE authors;
 DROP TABLE category;
 DROP TABLE publisher;
+
 
 --create new tables
 CREATE TABLE IF NOT EXISTS authors (
@@ -38,3 +38,21 @@ CREATE TABLE IF NOT EXISTS category_id (
 
 ALTER TABLE category ADD COLUMN cat_id INTEGER REFERENCES category_id (id);
 ALTER TABLE books ADD COLUMN description_nlp VARCHAR;
+
+
+--created user base
+CREATE TABLE IF NOT EXISTS user (
+    id INTEGER PRIMARY KEY);
+
+CREATE TABLE IF NOT EXISTS users_books (
+    id INTEGER PRIMARY KEY,
+    user_id INTEGER NOT NULL REFERENCES "user" (id),
+    book_id INTEGER NOT NULL REFERENCES books (id));
+
+CREATE TABLE IF NOT EXISTS user_preferences (
+    id INTEGER PRIMARY KEY,
+    user_id INTEGER NOT NULL REFERENCES "user" (id),
+    book_id INTEGER NOT NULL REFERENCES books (id));
+
+
+

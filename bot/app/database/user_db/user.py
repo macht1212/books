@@ -3,12 +3,10 @@ from sqlalchemy.orm import Mapped, mapped_column
 from bot.app.database.base import Base
 
 
-class CategoryID(Base):
-
-    __tablename__ = 'category_id'
+class User(Base):
+    __tablename__ = 'user'
 
     id: Mapped[int] = mapped_column(primary_key=True)
-    title: Mapped[str]
 
     def __repr__(self):
-        return self.title
+        return f'user: {self.id}'

@@ -107,3 +107,75 @@ class BookModel(BaseModel):
     description: str
     rating: float = .0
     votes: int = 0
+
+
+class UserModel(BaseModel):
+    """
+    Summary
+        The UserModel class is a Pydantic model that represents a user with an id field.
+
+    Main functionalities
+        The main functionality of the UserModel class is to define the structure and validation rules for a user object.
+        It ensures that the id field is of type int.
+
+    Methods
+        The UserModel class does not have any additional methods.
+
+    Fields
+        The UserModel class has one field:
+        id: Represents the unique identifier of the user. It is of type int.
+    """
+    id: int
+
+
+class UserBooksModel(BaseModel):
+    """
+    Summary
+        The UserBooksModel class is a Pydantic model that represents a user's book. It has three fields: id, book_id,
+        and user_id.
+
+    Main functionalities
+        The main functionality of the UserBooksModel class is to provide a structured representation of a user's book.
+        It ensures that the provided data adheres to the defined field types.
+
+    Methods
+        The UserBooksModel class does not have any additional methods. It inherits the methods from the BaseModel class
+        provided by Pydantic.
+
+    Fields
+        id: An integer field representing the ID of the user's book.
+        book_id: An integer field representing the ID of the book.
+        user_id: An integer field representing the ID of the user.
+    """
+    id: int
+    book_id: int
+    user_id: int
+
+
+class UserPreferencesModel(BaseModel):
+    """
+    Summary
+        The UserPreferencesModel class is a Pydantic model that represents user preferences for a book. It has three
+        fields: id, book_id, and user_id.
+
+    Main functionalities
+        The main functionality of the UserPreferencesModel class is to provide a structured representation of user
+        preferences for a book. It ensures that the values assigned to the fields are of the specified types (int in
+        this case) and enforces data validation.
+
+    Methods
+        The UserPreferencesModel class does not have any additional methods. It inherits the methods from the BaseModel
+        class provided by Pydantic, which include methods for data validation, serialization, and deserialization.
+
+    Fields
+        id: An integer field representing the unique identifier of the user preference.
+        book_id: An integer field representing the unique identifier of the book associated with the user preference.
+        user_id: An integer field representing the unique identifier of the user associated with the preference.
+    """
+    id: int
+    book_id: int
+    user_id: int
+
+
+
+
